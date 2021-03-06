@@ -6,7 +6,7 @@
 /*   By: rkochhan <rkochhan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 19:22:07 by rkochhan          #+#    #+#             */
-/*   Updated: 2021/03/02 10:01:42 by rkochhan         ###   ########.fr       */
+/*   Updated: 2021/03/06 09:26:45 by rkochhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,13 @@
 static void		ft_strdel(char **str)
 {
 	if (str && *str)
+	{
 		free(*str);
-	*str = NULL;
+		*str = NULL;
+	}
 }
 
-static int		ft_get_lines(char **str, char **line, bool *found_eof)
+static int		get_lines(char **str, char **line, bool *found_eof)
 {
 	size_t		len;
 	char		*temp;
@@ -47,7 +49,7 @@ static int		ft_get_lines(char **str, char **line, bool *found_eof)
 	}
 }
 
-static ssize_t	ft_read_file(int fd, char **leftover)
+static ssize_t	read_file(int fd, char **leftover)
 {
 	ssize_t		nread;
 	char		*buffer;
@@ -81,7 +83,7 @@ int				get_next_line(int fd, char **line)
 		return (-1);
 	if (!found_eof && !ft_strchr(leftover, '\n'))
 	{
-		nread = ft_read_file(fd, &leftover);
+		nread = read_file(fd, &leftover);
 		if (nread < 0)
 		{
 			ft_strdel(&leftover);
@@ -96,5 +98,5 @@ int				get_next_line(int fd, char **line)
 		found_eof = false;
 		return (0);
 	}
-	return (ft_get_lines(&leftover, line, &found_eof));
+	return (get_lines(&leftover, line, &found_eof));
 }
