@@ -6,20 +6,11 @@
 /*   By: rkochhan <rkochhan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 19:22:07 by rkochhan          #+#    #+#             */
-/*   Updated: 2021/03/06 09:26:45 by rkochhan         ###   ########.fr       */
+/*   Updated: 2021/03/23 07:05:22 by rkochhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-static void		ft_strdel(char **str)
-{
-	if (str && *str)
-	{
-		free(*str);
-		*str = NULL;
-	}
-}
 
 static int		get_lines(char **str, char **line, bool *found_eof)
 {
