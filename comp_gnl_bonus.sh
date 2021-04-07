@@ -1,3 +1,10 @@
 #!/bin/bash
 
-gcc -Wall -Werror -Wextra -fsanitize=address -g -D BUFFER_SIZE=$1 main_bonus.c get_next_line_bonus.c -I$FT -L$FT -lft -o gnlb || echo "Provide BUFFER_SIZE as first argument!"
+if [ -z "$1" ]
+then
+	DEF_BUFFER_SIZE=""
+else
+	DEF_BUFFER_SIZE="-D BUFFER_SIZE=$1"
+fi
+
+gcc -Wall -Werror -Wextra -fsanitize=address -g $DEF_BUFFER_SIZE main_bonus.c get_next_line_bonus.c -I$FT -L$FT -lft -o gnlb
