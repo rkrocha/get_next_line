@@ -6,13 +6,13 @@
 /*   By: rkochhan <rkochhan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 19:22:07 by rkochhan          #+#    #+#             */
-/*   Updated: 2021/03/23 07:05:22 by rkochhan         ###   ########.fr       */
+/*   Updated: 2021/04/07 09:08:27 by rkochhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static int		get_lines(char **str, char **line, bool *found_eof)
+static int	get_lines(char **str, char **line, bool *found_eof)
 {
 	size_t		len;
 	char		*temp;
@@ -46,10 +46,15 @@ static ssize_t	read_file(int fd, char **leftover)
 	char		*buffer;
 	char		*temp;
 
-	if (!(buffer = malloc((BUFFER_SIZE + 1) * sizeof(char))))
+	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (!buffer)
 		return (-1);
-	while ((nread = read(fd, buffer, BUFFER_SIZE)) > 0)
+	nread = 1;
+	while (nread > 0)
 	{
+		nread = read(fd, buffer, BUFFER_SIZE);
+		if (nread <= 0)
+			break ;
 		buffer[nread] = '\0';
 		if (!(*leftover))
 			*leftover = ft_strdup("");
@@ -64,7 +69,7 @@ static ssize_t	read_file(int fd, char **leftover)
 	return (nread);
 }
 
-int				get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
 	static char	*leftover;
 	static bool	found_eof;
