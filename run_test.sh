@@ -23,7 +23,7 @@ read -p "Press enter to continue"
 echo ""
 
 #start testing
-for j in -20 -1 0 1 2 6 32 128 512 4096 999999999
+for j in 1 2 6 32 128 512 4096 999999999
 do
 	echo -e "$TEST_DIV \n"
 	rm gnl &>/dev/null
@@ -42,7 +42,7 @@ echo -e "\n$TEST_DIV\n"
 #read from STDIN
 rm gnl &>/dev/null
 sh comp_gnl.sh 32
-echo -e "TEST READING FROM STDIN\nType several short lines, long lines, weird lines and compare results: "
+echo -e "TEST READING FROM STDIN\nType several short lines, long lines, weird lines and compare results. Use Ctrl + D to continue. "
 ./gnl /dev/stdin
 echo -e "\n$TEST_DIV\n"
 
