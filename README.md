@@ -53,8 +53,8 @@ git clone git@github.com:rkrocha/get_next_line.git
 
 int	main(void)
 {
-	int		fd;
-	int		ret;
+	int	fd;
+	int	ret;
 	char	*line;
 
 	fd = open("./path/to/text_file.txt", O_RDONLY);
