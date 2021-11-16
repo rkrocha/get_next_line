@@ -6,13 +6,13 @@
 /*   By: rkochhan <rkochhan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 19:22:07 by rkochhan          #+#    #+#             */
-/*   Updated: 2021/04/07 09:07:55 by rkochhan         ###   ########.fr       */
+/*   Updated: 2021/11/16 08:04:05 by rkochhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-static int	get_lines(char **str, char **line, bool *found_eof)
+static int	get_lines(char **str, char **line, t_bool *found_eof)
 {
 	size_t		len;
 	char		*temp;
@@ -35,7 +35,7 @@ static int	get_lines(char **str, char **line, bool *found_eof)
 	{
 		*line = ft_strdup(*str);
 		ft_strdel(str);
-		*found_eof = false;
+		*found_eof = FALSE;
 		return (0);
 	}
 }
@@ -71,9 +71,9 @@ static ssize_t	read_file(int fd, char **leftover)
 
 int	get_next_line(int fd, char **line)
 {
-	static char	*leftover[MAX_INPUT_FILES];
-	static bool	found_eof[MAX_INPUT_FILES];
-	ssize_t		nread;
+	static char		*leftover[MAX_INPUT_FILES];
+	static t_bool	found_eof[MAX_INPUT_FILES];
+	ssize_t			nread;
 
 	if (fd < 0 || fd >= MAX_INPUT_FILES || BUFFER_SIZE < 1 || !line)
 		return (-1);
@@ -86,12 +86,12 @@ int	get_next_line(int fd, char **line)
 			return (-1);
 		}
 		else if (nread == 0)
-			found_eof[fd] = true;
+			found_eof[fd] = TRUE;
 	}
 	if (found_eof[fd] && !leftover[fd])
 	{
 		*line = ft_strdup("");
-		found_eof[fd] = false;
+		found_eof[fd] = FALSE;
 		return (0);
 	}
 	return (get_lines(&leftover[fd], line, &found_eof[fd]));

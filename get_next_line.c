@@ -6,13 +6,13 @@
 /*   By: rkochhan <rkochhan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 19:22:07 by rkochhan          #+#    #+#             */
-/*   Updated: 2021/04/07 09:08:27 by rkochhan         ###   ########.fr       */
+/*   Updated: 2021/11/16 08:04:11 by rkochhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static int	get_lines(char **str, char **line, bool *found_eof)
+static int	get_lines(char **str, char **line, t_bool *found_eof)
 {
 	size_t		len;
 	char		*temp;
@@ -35,7 +35,7 @@ static int	get_lines(char **str, char **line, bool *found_eof)
 	{
 		*line = ft_strdup(*str);
 		ft_strdel(str);
-		*found_eof = false;
+		*found_eof = FALSE;
 		return (0);
 	}
 }
@@ -71,9 +71,9 @@ static ssize_t	read_file(int fd, char **leftover)
 
 int	get_next_line(int fd, char **line)
 {
-	static char	*leftover;
-	static bool	found_eof;
-	ssize_t		nread;
+	static char		*leftover;
+	static t_bool	found_eof;
+	ssize_t			nread;
 
 	if (fd < 0 || BUFFER_SIZE < 1 || !line)
 		return (-1);
@@ -86,12 +86,12 @@ int	get_next_line(int fd, char **line)
 			return (-1);
 		}
 		else if (nread == 0)
-			found_eof = true;
+			found_eof = TRUE;
 	}
 	if (found_eof && !leftover)
 	{
 		*line = ft_strdup("");
-		found_eof = false;
+		found_eof = FALSE;
 		return (0);
 	}
 	return (get_lines(&leftover, line, &found_eof));
