@@ -1,8 +1,6 @@
 <br/>
 <p align="center">
-  <a href="https://github.com/rkrocha/42cursus/blob/master/subjects/01.get_next_line.pdf">
-    <img src="https://github.com/rkrocha/42cursus/blob/master/badges/get_next_linee.png" alt="Logo" width="150" height="150">
-  </a>
+    <img src="https://github.com/rkrocha/42cursus/blob/main/badges/get_next_linee.png" alt="Logo" width="150" height="150">
 
   <p align="center">
     Reading a line on a fd is way too tedious.
@@ -16,8 +14,6 @@
 ## About The Project
 
 The aim of this project is to make you code a function that returns a line ending with a newline, read from a file descriptor.
-
-For more information check out this project's [PDF](https://github.com/rkrocha/42cursus/blob/master/subjects/01.get_next_line.pdf).
 
 ## Built With
 
